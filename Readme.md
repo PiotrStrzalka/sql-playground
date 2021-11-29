@@ -1,0 +1,1 @@
+sql-playground is a respository that collects various go database access techniques

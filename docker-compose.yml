@@ -1,0 +1,32 @@
+version: '3.1'
+
+services:
+  postgres-db:
+    image: postgres
+    restart: always
+    environment: 
+      POSTGRES_PASSWORD: 'postgres'
+  
+  mysql-db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - 3306:3306
+    volumes:
+      - my-db:/var/lib/mysql
+      - ./sql-scripts:/sql-scripts
+  
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8080
+  
+volumes:
+  my-db:
